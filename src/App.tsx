@@ -1048,7 +1048,7 @@ export default function App() {
             >
               <header className="mb-6 md:mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-stone-900" data-i18n="marketInsights">{t('marketInsights')}</h2>
+                  <h2 className="text-2xl md:text-[19px] font-bold text-stone-900" data-i18n="marketInsights">{t('marketInsights')}</h2>
                   <p className="text-stone-500 mt-1 text-sm md:text-base" data-i18n="marketTrendsDesc">{t('marketTrendsDesc')}</p>
                 </div>
                 <div className="flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-xl border border-emerald-100">
