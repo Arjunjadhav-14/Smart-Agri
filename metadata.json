@@ -1,5 +1,4 @@
 {
   "name": "AgriSmart AI",
-  "description": "A smart farming assistant for price prediction, weather impact analysis, and crop health detection.",
-  "requestFramePermissions": ["geolocation"]
+  "description": "A smart farming assistant for price prediction, weather impact analysis, and crop health detection."
 }

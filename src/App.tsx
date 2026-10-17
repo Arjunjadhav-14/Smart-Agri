@@ -150,7 +150,7 @@ const CROP_DISEASES: Record<Crop, string[]> = {
 };
 
 // --- Auth Component ---
-function Auth({ lang, t }: { lang: Language, t: (key: any) => string }) {
+function Auth({ lang, t, onGuestLogin }: { lang: Language, t: (key: any) => string, onGuestLogin?: () => void }) {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -245,6 +245,24 @@ function Auth({ lang, t }: { lang: Language, t: (key: any) => string }) {
           >
             {loading ? t('processing') : isLogin ? t('signIn') : t('signUp')}
           </button>
+
+          {onGuestLogin && (
+            <>
+              <div className="relative flex py-1 items-center">
+                <div className="flex-grow border-t border-stone-200"></div>
+                <span className="flex-shrink mx-4 text-xs font-semibold text-stone-400 uppercase tracking-wider">or</span>
+                <div className="flex-grow border-t border-stone-200"></div>
+              </div>
+
+              <button 
+                type="button"
+                onClick={onGuestLogin}
+                className="w-full bg-stone-100 hover:bg-emerald-50 text-stone-700 hover:text-emerald-700 border border-stone-200 hover:border-emerald-200 py-3 rounded-xl font-bold transition-all flex items-center justify-center gap-2"
+              >
+                <span>🌾 {lang === 'hi' ? 'अतिथि के रूप में जारी रखें (डेमो)' : lang === 'mr' ? 'अतिथी म्हणून सुरू ठेवा (डेमो)' : 'Continue as Guest (Demo Mode)'}</span>
+              </button>
+            </>
+          )}
 
           <p className="text-center text-sm text-stone-500">
             {isLogin ? t('dontHaveAccount') : t('alreadyHaveAccount')}{' '}
@@ -564,8 +582,16 @@ export default function App() {
     );
   }
 
+  const handleGuestLogin = () => {
+    setUser({
+      uid: 'demo-farmer-01',
+      email: 'farmer@agrismart.local',
+      displayName: 'Ramesh Patel',
+    } as any);
+  };
+
   if (!user) {
-    return <Auth lang={lang} t={t} />;
+    return <Auth lang={lang} t={t} onGuestLogin={handleGuestLogin} />;
   }
 
   return (
